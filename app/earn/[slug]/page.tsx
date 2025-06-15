@@ -2,7 +2,7 @@ import LiquidityCard from "../../../components/LiquidityCard";
 import { networkConfig } from "../../../helper-config.js";
 
 export default function earnTokenPage({ params }: { params: { slug: string } }) {
-	const pool = networkConfig[1].pools.find((pool) => pool.name === params.slug.toUpperCase());
+	const pool = networkConfig[137].pools.find((pool) => pool.name === params.slug.toUpperCase());
 	if (!pool) {
 		return <div>
 			<p className="text-neutral-300 text-4xl">Pool {params.slug} not found</p>

@@ -12,7 +12,7 @@ export default function Footer() {
 						<div>
 							<Link href="/" className="flex flex-row md:gap-2 gap-1 items-center">
 								<Logo />
-								<span className="font-bold text-xl">Uniswap Max</span>
+								<span className="font-bold text-xl">Eswap Margin</span>
 							</Link>
 						</div>
 						<ul className="flex flex-col gap-4">
@@ -43,10 +43,10 @@ export default function Footer() {
 				<div className="flex flex-col justify-center gap-2 items-center text-neutral-400 text-xs">
 					<p>
 						<a href="https://chain.link/hackathon" target="_blank" className="hover:text-neutral-500 transition-all">
-							ChainLink Hackaton 2023
+							
 						</a>
 					</p>
-					<p>Made with ❤️ by <strong>Los Byzantinos</strong>. All right reserved.</p>
+					<p>Made by Eswap Team <strong></strong>. All right reserved.</p>
 				</div>
 			</div>
 		</footer>

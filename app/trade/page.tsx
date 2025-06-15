@@ -16,7 +16,7 @@ const mockId = [1, 2, 3]; // Beirao will change this to a list of pool ids
 export default function TradePage() {
 	const { isConnected, address } = useAccount();
 
-	const marketAddress = networkConfig[1]["addressMarket"] as addressT;
+	const marketAddress = networkConfig[137]["addressMarket"] as addressT;
 
 	const [traderPositions, setTraderPositions] = useState<number[]>([]);
 

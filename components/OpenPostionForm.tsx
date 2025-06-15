@@ -15,9 +15,11 @@ type addressT = `0x${string}`;
 
 function OpenPostionForm() {
 	const { isConnected, address } = useAccount();
+	const { chain } = useNetwork();
+	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
 
-	let marketAddress = networkConfig[1]["addressMarket"] as addressT;
-	let positionsAddress = networkConfig[1]["addressPositions"] as addressT;
+	let marketAddress = networkConfig[activeChainId]["addressMarket"] as addressT;
+	let positionsAddress = networkConfig[activeChainId]["addressPositions"] as addressT;
 	const fee = 3000;
 
 	const [addSend, setAddSend] = useState("");
@@ -44,7 +46,7 @@ function OpenPostionForm() {
 	});
 	//! TODO: change to market contract
 	let { config: openPosConf } = usePrepareContractWrite({
-		address: positionsAddress,
+		address: positionsAddress, // This will now use the dynamic positionsAddress
 		abi: positionsABI,
 		functionName: "openPosition",
 		args: [address, addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
@@ -58,7 +60,7 @@ function OpenPostionForm() {
 	// });
 
 	// const { config: pauseConf } = usePrepareContractWrite({
-	// 	address: networkConfig[1]["addressMarket"] as addressT,
+	// 	address: networkConfig[activeChainId]["addressMarket"] as addressT, // Updated here as well
 	// 	abi: marketABI,
 	// 	functionName: "pause",
 	// });
@@ -269,8 +271,8 @@ function OpenPostionForm() {
 			) : (
 				<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-8 p-4">
 					<div className="flex justify-center">
-						<Button type="a" style="ghost" size="md" to="https://app.uniswap.org/">
-							<span>Go to Uniswap</span>
+						<Button type="a" style="ghost" size="md" to="https://eswap.dexkit.app/">
+							<span>Go to Eswap</span>
 							<Extern />
 						</Button>
 					</div>

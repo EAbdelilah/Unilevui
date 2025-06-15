@@ -9,7 +9,7 @@ export default function Header() {
 			<div>
 				<Link href="/" className="flex flex-row md:gap-2 gap-1 items-center">
 					<Logo />
-					<span className="font-bold md:text-lg text-sm">Uniswap Max</span>
+					<span className="font-bold md:text-lg text-sm">Eswap Margin</span>
 				</Link>
 			</div>
 			<nav className="md:block hidden">

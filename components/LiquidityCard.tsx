@@ -21,14 +21,21 @@ type addressT = `0x${string}`;
 
 function LiquidityCard(props: LiquidityCardProps) {
 	const { isConnected, address } = useAccount();
+	const { chain } = useNetwork();
+	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
 
 	const [balanceShare, setBalanceShare] = useState<string | unknown>("1");
 	const [balanceAsset, setBalanceAsset] = useState<string | unknown>("0");
 	const [amount, setAmount] = useState<number | undefined>(0);
-	const asset = props.asset as keyof (typeof networkConfig)[1]["pool"];
-	const dec = parseInt(networkConfig[1]["pool"][asset]["dec"] as string);
-	const addToken = networkConfig[1]["pool"][asset]["token"] as addressT;
-	const poolAddress = networkConfig[1]["pool"][asset]["address"] as addressT;
+
+	const assetName = props.asset; // Keep the original asset name string from props
+	// Robustly access pool configuration for the active chain
+	const currentNetworkPools = networkConfig[activeChainId]?.pool;
+	const poolAssetConfig = currentNetworkPools?.[assetName as keyof typeof currentNetworkPools];
+
+	const dec = parseInt(poolAssetConfig?.dec as string || "18"); // Default to 18 if not found
+	const addToken = poolAssetConfig?.token as addressT | undefined; // Can be undefined if asset or chain not configured
+	const poolAddress = poolAssetConfig?.address as addressT | undefined; // Can be undefined
 
 	const { config: approveConf } = usePrepareContractWrite({
 		address: addToken,
@@ -50,7 +57,7 @@ function LiquidityCard(props: LiquidityCardProps) {
 	});
 
 	// const { config: pauseConf } = usePrepareContractWrite({
-	// 	address: networkConfig[1]["addressMarket"] as addressT,
+	// 	address: networkConfig[activeChainId]["addressMarket"] as addressT, // Updated here as well
 	// 	abi: marketABI,
 	// 	functionName: "pause",
 	// });

@@ -14,8 +14,11 @@ interface PositionCardProps {
 type addressT = `0x${string}`;
 
 function PositionCard(props: PositionCardProps) {
-	const marketAddress = networkConfig[1]["addressMarket"] as addressT;
-	const positionsAddress = networkConfig[1]["addressPositions"] as addressT;
+	const { chain } = useNetwork();
+	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
+
+	const marketAddress = networkConfig[activeChainId]["addressMarket"] as addressT;
+	const positionsAddress = networkConfig[activeChainId]["addressPositions"] as addressT;
 
 	const [addBaseToken, setAddBaseToken] = useState("");
 	const [addQuoteToken, setAddQuoteToken] = useState("");

@@ -8,21 +8,21 @@ import { mainnet, polygon, optimism, arbitrum, goerli } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
-// const { chains, publicClient, webSocketPublicClient } = configureChains(
-// 	[mainnet, polygon, optimism, arbitrum, ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : [])],
-// 	[publicProvider()],
-// );
-
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-	[mainnet],
-	[
-		jsonRpcProvider({
-			rpc: (chain: Chain) => ({
-				http: `http://127.0.0.1:8545`,
-			}),
-		}),
-	],
+	[mainnet, polygon, optimism, arbitrum, ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : [])],
+	[publicProvider()],
 );
+
+// const { chains, publicClient, webSocketPublicClient } = configureChains(
+// 	[mainnet],
+// 	[
+// 		jsonRpcProvider({
+// 			rpc: (chain: Chain) => ({
+// 				http: `http://127.0.0.1:8545`,
+// 			}),
+// 		}),
+// 	],
+// );
 
 const projectId = "YOUR_PROJECT_ID";
 
@@ -33,7 +33,7 @@ const { wallets } = getDefaultWallets({
 });
 
 const demoAppInfo = {
-	appName: "Uniswap Max",
+	appName: "Eswap Margin",
 };
 
 const connectors = connectorsForWallets([
