@@ -3,9 +3,9 @@
 import React from "react";
 import Button from "./Button";
 import { useAccount, usePrepareContractWrite, useContractRead, useNetwork, useContractWrite } from "wagmi";
-import { marketABI } from "@/abi/market.abi.json";
-import { liquidityPoolABI } from "@/abi/liquidityPool.abi.json";
-import { ERC20ABI } from "@/abi/ERC20.abi.json";
+import marketAbiData from "@/abi/market.abi.json";
+import liquidityPoolAbiData from "@/abi/liquidityPool.abi.json";
+import ERC20AbiData from "@/abi/ERC20.abi.json";
 import { useEffect, useState } from "react";
 import { networkConfig } from "@/helper-config.js";
 import Image from "next/image";
@@ -18,11 +18,16 @@ interface LiquidityCardProps {
 	useRate: number;
 }
 type addressT = `0x${string}`;
+type NetworkConfigKey = keyof typeof networkConfig;
 
 function LiquidityCard(props: LiquidityCardProps) {
 	const { isConnected, address } = useAccount();
 	const { chain } = useNetwork();
-	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
+	const detectedChainId = chain?.id;
+	const activeChainId: NetworkConfigKey =
+		detectedChainId !== undefined && Object.prototype.hasOwnProperty.call(networkConfig, detectedChainId)
+			? (detectedChainId as NetworkConfigKey)
+			: 137;
 
 	const [balanceShare, setBalanceShare] = useState<string | unknown>("1");
 	const [balanceAsset, setBalanceAsset] = useState<string | unknown>("0");
@@ -39,26 +44,26 @@ function LiquidityCard(props: LiquidityCardProps) {
 
 	const { config: approveConf } = usePrepareContractWrite({
 		address: addToken,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "approve",
 		args: [poolAddress, amount],
 	});
 	const { config: depositConf } = usePrepareContractWrite({
 		address: poolAddress,
-		abi: liquidityPoolABI,
+		abi: liquidityPoolAbiData.liquidityPoolABI,
 		functionName: "deposit",
 		args: [amount, address],
 	});
 	const { config: withdrawConf } = usePrepareContractWrite({
 		address: poolAddress,
-		abi: liquidityPoolABI,
+		abi: liquidityPoolAbiData.liquidityPoolABI,
 		functionName: "withdraw",
 		args: [amount, address, address],
 	});
 
 	// const { config: pauseConf } = usePrepareContractWrite({
 	// 	address: networkConfig[activeChainId]["addressMarket"] as addressT, // Updated here as well
-	// 	abi: marketABI,
+	// 	abi: marketAbiData.marketABI,
 	// 	functionName: "pause",
 	// });
 
@@ -76,7 +81,7 @@ function LiquidityCard(props: LiquidityCardProps) {
 		isLoading: isLoadingBalanceShare,
 	} = useContractRead({
 		address: poolAddress,
-		abi: liquidityPoolABI,
+		abi: liquidityPoolAbiData.liquidityPoolABI,
 		functionName: "balanceOf",
 		args: [address],
 	});
@@ -87,7 +92,7 @@ function LiquidityCard(props: LiquidityCardProps) {
 		isLoading: isLoadingBalanceAsset,
 	} = useContractRead({
 		address: poolAddress,
-		abi: liquidityPoolABI,
+		abi: liquidityPoolAbiData.liquidityPoolABI,
 		functionName: "convertToAssets",
 		args: [balanceShare],
 	});

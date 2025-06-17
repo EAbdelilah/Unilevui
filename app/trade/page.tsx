@@ -5,7 +5,7 @@ import TradingViewWidget from "@/components/TradingViewWidget";
 import PositionCard from "@/components/PositionCard";
 import OpenPostionForm from "@/components/OpenPostionForm";
 import { useEffect, useState } from "react";
-import { marketABI } from "../../abi/market.abi.json";
+import marketAbiData from "../../abi/market.abi.json";
 import { useAccount, usePrepareContractWrite, useContractRead, useNetwork, useContractWrite } from "wagmi";
 
 import { networkConfig } from "@/helper-config.js";
@@ -22,7 +22,7 @@ export default function TradePage() {
 
 	const { data: traderPositionsTemp } = useContractRead({
 		address: marketAddress,
-		abi: marketABI,
+		abi: marketAbiData.marketABI,
 		functionName: "getTraderPositions",
 		args: [address],
 	});
