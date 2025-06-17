@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { useAccount, usePrepareContractWrite, useContractRead, useNetwork, useContractWrite } from "wagmi";
-import { marketABI } from "../abi/market.abi.json";
-import { ERC20ABI } from "@/abi/ERC20.abi.json";
-import { liquidityPoolABI } from "../abi/liquidityPool.abi.json";
+import marketAbiData from "../abi/market.abi.json";
+import ERC20AbiData from "@/abi/ERC20.abi.json";
+import liquidityPoolAbiData from "../abi/liquidityPool.abi.json";
 import { useEffect, useState } from "react";
 import { networkConfig } from "@/helper-config.js";
 import Button from "./Button";
@@ -12,10 +12,15 @@ interface PositionCardProps {
 	posId: number;
 }
 type addressT = `0x${string}`;
+type NetworkConfigKey = keyof typeof networkConfig;
 
 function PositionCard(props: PositionCardProps) {
 	const { chain } = useNetwork();
-	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
+	const detectedChainId = chain?.id;
+	const activeChainId: NetworkConfigKey =
+		detectedChainId !== undefined && Object.prototype.hasOwnProperty.call(networkConfig, detectedChainId)
+			? (detectedChainId as NetworkConfigKey)
+			: 137;
 
 	const marketAddress = networkConfig[activeChainId]["addressMarket"] as addressT;
 	const positionsAddress = networkConfig[activeChainId]["addressPositions"] as addressT;
@@ -35,7 +40,7 @@ function PositionCard(props: PositionCardProps) {
 
 	const { config: closePosConf } = usePrepareContractWrite({
 		address: marketAddress,
-		abi: marketABI,
+		abi: marketAbiData.marketABI,
 		functionName: "closePosition",
 		args: [props.posId],
 	});
@@ -44,33 +49,33 @@ function PositionCard(props: PositionCardProps) {
 
 	const { data: posData } = useContractRead({
 		address: marketAddress as addressT,
-		abi: marketABI,
+		abi: marketAbiData.marketABI,
 		functionName: "getPositionParams",
 		args: [props.posId],
 	}) as { data: any[] };
 
 	const { data: decBaseTokenTemp } = useContractRead({
 		address: addBaseToken as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "decimals",
 		args: [],
 	});
 	const { data: decQuoteTokenTemp } = useContractRead({
 		address: addQuoteToken as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "decimals",
 		args: [],
 	});
 
 	const { data: nameBaseTokenTemp } = useContractRead({
 		address: addBaseToken as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "symbol",
 		args: [],
 	});
 	const { data: nameQuoteTokenTemp } = useContractRead({
 		address: addQuoteToken as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "symbol",
 		args: [],
 	});
