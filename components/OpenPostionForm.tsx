@@ -2,21 +2,26 @@
 
 import React from "react";
 import { useAccount, usePrepareContractWrite, useContractRead, useNetwork, useContractWrite } from "wagmi";
-import { marketABI } from "../abi/market.abi.json";
-import { positionsABI } from "../abi/positions.abi.json";
+import marketAbiData from "../abi/market.abi.json";
+import positionsAbiData from "../abi/positions.abi.json";
 
-import { ERC20ABI } from "@/abi/ERC20.abi.json";
+import ERC20AbiData from "@/abi/ERC20.abi.json";
 import { useEffect, useState } from "react";
 import { networkConfig } from "@/helper-config.js";
 import Button from "./Button";
 import Extern from "./Extern";
 
 type addressT = `0x${string}`;
+type NetworkConfigKey = keyof typeof networkConfig;
 
 function OpenPostionForm() {
 	const { isConnected, address } = useAccount();
 	const { chain } = useNetwork();
-	const activeChainId = chain?.id && networkConfig[chain.id] ? chain.id : 137;
+	const detectedChainId = chain?.id;
+	const activeChainId: NetworkConfigKey =
+		detectedChainId !== undefined && Object.prototype.hasOwnProperty.call(networkConfig, detectedChainId)
+			? (detectedChainId as NetworkConfigKey)
+			: 137;
 
 	let marketAddress = networkConfig[activeChainId]["addressMarket"] as addressT;
 	let positionsAddress = networkConfig[activeChainId]["addressPositions"] as addressT;
@@ -40,28 +45,28 @@ function OpenPostionForm() {
 
 	const { config: approveConf } = usePrepareContractWrite({
 		address: addSend as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "approve",
 		args: [positionsAddress, amount],
 	});
 	//! TODO: change to market contract
 	let { config: openPosConf } = usePrepareContractWrite({
 		address: positionsAddress, // This will now use the dynamic positionsAddress
-		abi: positionsABI,
+		abi: positionsAbiData.positionsABI,
 		functionName: "openPosition",
 		args: [address, addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
 	});
 
 	// let { config: openPosConf } = usePrepareContractWrite({
 	// 	address: marketAddress,
-	// 	abi: marketABI,
+	// 	abi: marketAbiData.marketABI,
 	// 	functionName: "openPosition",
 	// 	args: [addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
 	// });
 
 	// const { config: pauseConf } = usePrepareContractWrite({
 	// 	address: networkConfig[activeChainId]["addressMarket"] as addressT, // Updated here as well
-	// 	abi: marketABI,
+	// 	abi: marketAbiData.marketABI,
 	// 	functionName: "pause",
 	// });
 	const handleChange = (e: { target: { value: React.SetStateAction<string> } }) => {
@@ -78,26 +83,26 @@ function OpenPostionForm() {
 
 	const { data: decTokenSendTemp } = useContractRead({
 		address: addSend as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "decimals",
 		args: [],
 	});
 	const { data: decTokenTradeTemp } = useContractRead({
 		address: addTokenToTrade as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "decimals",
 		args: [],
 	});
 
 	const { data: nameTokenSendTemp } = useContractRead({
 		address: addSend as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "symbol",
 		args: [],
 	});
 	const { data: nameTokenTradeTemp } = useContractRead({
 		address: addTokenToTrade as addressT,
-		abi: ERC20ABI,
+		abi: ERC20AbiData.ERC20ABI,
 		functionName: "symbol",
 		args: [],
 	});
@@ -122,7 +127,20 @@ function OpenPostionForm() {
 		console.log("amount : ", amount);
 		console.log("limitPrice : ", limitPrice);
 		console.log("stopPrice : ", stopPrice);
-	}, [decTokenSendTemp, decTokenTradeTemp, nameTokenSendTemp, nameTokenTradeTemp, amount]);
+	}, [
+		decTokenSendTemp,
+		decTokenTradeTemp,
+		nameTokenSendTemp,
+		nameTokenTradeTemp,
+		amount,
+		addSend,
+		addTokenToTrade,
+		address,
+		isShort,
+		leverage,
+		limitPrice,
+		stopPrice,
+	]);
 
 	return (
 		<div className="flex flex-col gap-6" style={{ height: "calc(100% - 6rem)" }}>
