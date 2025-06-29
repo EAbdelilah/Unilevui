@@ -15,7 +15,7 @@ export default function Header() {
 			<nav className="md:block hidden">
 				<ul className="flex flex-row md:gap-12 gap-4 md:text-sm text-xs tracking-wider">
 					<li>
-						<Link href="/dashboard">Dashboard</Link>
+						<Link href="/dashboard"> How to use ? </Link>
 					</li>
 					<li>
 						<Link href="/earn">Earn</Link>

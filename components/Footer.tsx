@@ -19,7 +19,7 @@ export default function Footer() {
 							<li>
 								<Link href="/dashboard" className="flex flex-row gap-2 text-lg hover:underline" style={{ fontStretch: "expanded" }}>
 									<Arrow />
-									Dashboard
+									How to trade on Eswap margin
 								</Link>
 							</li>
 							<li>

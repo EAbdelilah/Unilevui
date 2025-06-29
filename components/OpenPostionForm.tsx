@@ -175,7 +175,9 @@ function OpenPostionForm() {
 					<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-6 p-4">
 						<div className="flex flex-col gap-1">
 							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Token to send address ({nameTokenSend ? nameTokenSend : "-"})
+							Base token address (e.g 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174 for USDC)
+							
+							({nameTokenSend ? nameTokenSend : "-"})
 							</label>
 							<input
 								id="token-to-send"
@@ -190,7 +192,8 @@ function OpenPostionForm() {
 						</div>
 						<div className="flex flex-col gap-1">
 							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Token to trade address ({nameTokenTrade ? nameTokenTrade : "-"})
+								Quote token address (e.g 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6 for WBTC)
+									 ({nameTokenTrade ? nameTokenTrade : "-"})
 							</label>
 							<input
 								id="token-to-trade"
