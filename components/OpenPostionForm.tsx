@@ -175,36 +175,39 @@ function OpenPostionForm() {
 					<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-6 p-4">
 						<div className="flex flex-col gap-1">
 							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-							Base token address (e.g 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174 for USDC)
-							
-							({nameTokenSend ? nameTokenSend : "-"})
+								Base token ({nameTokenSend ? nameTokenSend : "-"})
 							</label>
-							<input
+							<select
 								id="token-to-send"
-								type="text"
-								maxLength={42}
-								minLength={42}
 								className="w-full glass-input glass-input-small"
-								inputMode="text"
 								style={{ lineHeight: "1.5rem" }}
 								onChange={(e) => setAddSend(e.target.value)}
-							/>
+							>
+								<option value="">Select a token</option>
+								{networkConfig[activeChainId].pools.map((pool) => (
+									<option key={pool.name} value={pool.token}>
+										{pool.name}
+									</option>
+								))}
+							</select>
 						</div>
 						<div className="flex flex-col gap-1">
-							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Quote token address (e.g 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6 for WBTC)
-									 ({nameTokenTrade ? nameTokenTrade : "-"})
+							<label className="text-sm text-neutral-300" htmlFor="token-to-trade">
+								Quote token ({nameTokenTrade ? nameTokenTrade : "-"})
 							</label>
-							<input
+							<select
 								id="token-to-trade"
-								type="text"
-								maxLength={42}
-								minLength={42}
 								className="w-full glass-input glass-input-small"
-								inputMode="text"
 								style={{ lineHeight: "1.5rem" }}
 								onChange={(e) => setAddTokenToTrade(e.target.value)}
-							/>
+							>
+								<option value="">Select a token</option>
+								{networkConfig[activeChainId].pools.map((pool) => (
+									<option key={pool.name} value={pool.token}>
+										{pool.name}
+									</option>
+								))}
+							</select>
 						</div>
 					</article>
 					<article className="glass-container flex flex-col gap-4 rounded-3xl md:p-6 p-4">
