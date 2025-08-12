@@ -3,7 +3,7 @@
 import React from "react";
 import TradingViewWidget from "@/components/TradingViewWidget";
 import PositionCard from "@/components/PositionCard";
-import OpenPostionForm from "@/components/OpenPostionForm";
+import OpenPositionForm from "@/components/OpenPositionForm";
 import { useEffect, useState } from "react";
 import marketAbiData from "../../abi/market.abi.json";
 import { useAccount, usePrepareContractWrite, useContractRead, useNetwork, useContractWrite } from "wagmi";
@@ -38,7 +38,7 @@ export default function TradePage() {
 			<section className="fit-content flex justify-center h-full">
 				<div className="md:mt-32 mt-24 md:grid md:grid-cols-[1fr,0.5fr] md:grid-rows-1 md:justify-between flex justify-center gap-8 w-full">
 					<TradingViewWidget />
-					<OpenPostionForm />
+					<OpenPositionForm />
 				</div>
 			</section>
 			<section className="fit-content flex justify-center h-full">
