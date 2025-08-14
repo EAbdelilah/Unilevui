@@ -107,15 +107,13 @@ export default function Home() {
 							</h2>
 							<p className="text-neutral-400 lg:text-3xl md:text-xl text-lg" style={{ lineHeight: 1.4 }}>
 								A Decentralized Trading Platform
-								<br /> Built on Top of Uniswap V3
+								<br /> Built on Top of Deep Liquidity
 							</p>
 						</div>
 						<div className="flex justify-center">
 							<article className="glass-container to-reveal max-w-prose rounded-3xl md:p-8 p-4 flex flex-col gap-4">
 								<p className="text-neutral-300 lg:text-xl md:text-md text-sm text-center">
-									Eswap Margin is the next generation of decentralize trading tools that does not use interest rate to enable you to short sell or levrage. We’ve built it to enable easy hedging
-									and to be as easy-to-use as possible, so even if you’re new to crypto trading, we’ll have
-									your back.
+								Eswap Margin is The Next Generation of Decentralized Trading
 								</p>
 								<div className="flex justify-center items-center">
 									<Button type="link" to="/trade" style="solid" size="md">
@@ -152,9 +150,9 @@ export default function Home() {
 								className="text-neutral-300 lg:text-5xl md:text-3xl text-xl"
 								style={{ fontStretch: "expanded", lineHeight: 1.4 }}
 							>
-								Empowering Ethical Traders that are looking for 0% interest rate 
-								<br /> in the World of
-								<br /> Decentralized Trading!
+								Zero interest rates. True decentralized freedom.
+								<br /> 
+								<br /> 
 							</h2>
 						</div>
 						<div className="flex flex-col self-center gap-4 max-w-prose">
@@ -163,7 +161,7 @@ export default function Home() {
 								id="empowering-neophytes-text"
 							>
 								<p className="text-neutral-300 lg:text-xl md:text-md text-sm text-center">
-									Eswap Margin is built for traders that are lookig to generate alpha by trading, liquidity provider can thus margin trade to hedge their positions.
+								Eswap Margin: Built for Alpha Hunters
 								</p>
 								<div className="flex items-center justify-center">
 									<Button type="link" to="/earn" style="solid" size="md">

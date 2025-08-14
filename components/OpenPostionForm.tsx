@@ -50,19 +50,19 @@ function OpenPostionForm() {
 		args: [positionsAddress, amount],
 	});
 	//! TODO: change to market contract
-	let { config: openPosConf } = usePrepareContractWrite({
-		address: positionsAddress, // This will now use the dynamic positionsAddress
-		abi: positionsAbiData.positionsABI,
-		functionName: "openPosition",
-		args: [address, addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
-	});
-
 	// let { config: openPosConf } = usePrepareContractWrite({
-	// 	address: marketAddress,
-	// 	abi: marketAbiData.marketABI,
+	// 	address: positionsAddress, // This will now use the dynamic positionsAddress
+	// 	abi: positionsAbiData.positionsABI,
 	// 	functionName: "openPosition",
-	// 	args: [addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
+	// 	args: [address, addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
 	// });
+
+	let { config: openPosConf } = usePrepareContractWrite({
+		address: marketAddress,
+		abi: marketAbiData.marketABI,
+		functionName: "openPosition",
+		args: [addSend, addTokenToTrade, fee, isShort, leverage, amount, limitPrice, stopPrice],
+	});
 
 	// const { config: pauseConf } = usePrepareContractWrite({
 	// 	address: networkConfig[activeChainId]["addressMarket"] as addressT, // Updated here as well
