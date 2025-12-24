@@ -40,7 +40,7 @@ export default function Header() {
 						viewBox="6 0 24 20"
 						stroke="currentColor"
 					>
-						<path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="1" d="M4 6h28M4 12h28M4" />
+						<path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="1" d="M4 6h28M4 12h28M4 18h28" />
 					</svg>
 				</button>
 			</div>
