@@ -1,5 +1,5 @@
 export async function GET() {
-  const URL = process.env.NEXT_PUBLIC_URL || 'https://eswap-margin-kappa.vercel.app';
+  const URL = process.env.NEXT_PUBLIC_URL || 'https://ewap-margin.vercel.app';
   return Response.json({
     // TODO: Generate these fields on Base Build and paste them here.
     // https://build.base.org/tools/account-association
@@ -13,7 +13,7 @@ export async function GET() {
       "name": "Eswap Margin",
       "homeUrl": URL,
       "iconUrl": "https://eswap.pro/favicon.ico",
-      "splashImageUrl": "https://eswap-margin-kappa.vercel.app/mini-app-splash.png",
+      "splashImageUrl": "https://ewap-margin.vercel.app/mini-app-splash.png",
       "splashBackgroundColor": "#000",
       "webhookUrl": `${URL}/api/webhook`,
       "subtitle": "The Next Generation of Decentralized Trading",

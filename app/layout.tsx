@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import type { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const URL = process.env.NEXT_PUBLIC_URL || 'https://eswap-margin-kappa.vercel.app';
+  const URL = process.env.NEXT_PUBLIC_URL || 'https://ewap-margin.vercel.app';
   return {
     other: {
       'fc:miniapp': JSON.stringify({
@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
             type: 'launch_miniapp',
             name: 'Eswap Margin',
             url: URL,
-            splashImageUrl: 'https://eswap-margin-kappa.vercel.app/mini-app-splash.png',
+            splashImageUrl: 'https://ewap-margin.vercel.app/mini-app-splash.png',
             splashBackgroundColor: '#000',
           },
         },
