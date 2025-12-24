@@ -1,5 +1,6 @@
 "use client";
 
+import { sdk } from '@farcaster/miniapp-sdk';
 import { GradientCanvas } from "shadergradient";
 import { Gradient } from "shadergradient";
 import React from "react";
@@ -9,6 +10,10 @@ import Button from "@/components/Button";
 import { uiConfig } from "../helper-config.js";
 
 export default function Home() {
+	React.useEffect(() => {
+		sdk.actions.ready();
+	}, []);
+
 	type GradientType = "sphere" | "waterPlane" | "plane";
 	const [type, setType] = React.useState("sphere" as GradientType);
 	React.useEffect(() => {
