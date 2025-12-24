@@ -2,6 +2,29 @@ import "app/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { Providers } from "./providers";
 import Header from "@/components/Header";
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const URL = process.env.NEXT_PUBLIC_URL || 'https://eswap-margin-kappa.vercel.app';
+  return {
+    other: {
+      'fc:miniapp': JSON.stringify({
+        version: 'next',
+        imageUrl: 'https://eswap.pro/og.png',
+        button: {
+          title: `Launch Eswap Margin`,
+          action: {
+            type: 'launch_miniapp',
+            name: 'Eswap Margin',
+            url: URL,
+            splashImageUrl: 'https://eswap-margin-kappa.vercel.app/mini-app-splash.png',
+            splashBackgroundColor: '#000',
+          },
+        },
+      }),
+    },
+  };
+}
 
 function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
