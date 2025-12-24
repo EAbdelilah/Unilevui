@@ -1,5 +1,5 @@
 export async function GET() {
-  const URL = process.env.NEXT_PUBLIC_URL || 'https://eswap.pro';
+  const URL = process.env.NEXT_PUBLIC_URL || 'https://eswap-margin-kappa.vercel.app';
   return Response.json({
     // TODO: Generate these fields on Base Build and paste them here.
     // https://build.base.org/tools/account-association
@@ -11,25 +11,25 @@ export async function GET() {
     "miniapp": {
       "version": "1",
       "name": "Eswap Margin",
-      "homeUrl": `${URL}`,
-      "iconUrl": `${URL}/favicon.ico`,
-      "splashImageUrl": `${URL}/splash.png`,
-      "splashBackgroundColor": "#000000",
+      "homeUrl": URL,
+      "iconUrl": "https://eswap.pro/favicon.ico",
+      "splashImageUrl": "https://eswap-margin-kappa.vercel.app/mini-app-splash.png",
+      "splashBackgroundColor": "#000",
       "webhookUrl": `${URL}/api/webhook`,
-      "subtitle": "Decentralized Margin Trading",
-      "description": "Eswap Margin is The Next Generation of Decentralized Trading.",
+      "subtitle": "The Next Generation of Decentralized Trading",
+      "description": "Eswap Margin is a decentralized margin trading protocol.",
       "screenshotUrls": [
-        `${URL}/s1.png`,
-        `${URL}/s2.png`,
-        `${URL}/s3.png`
+        "https://eswap.pro/s1.png",
+        "https://eswap.pro/s2.png",
+        "https://eswap.pro/s3.png"
       ],
       "primaryCategory": "finance",
       "tags": ["trading", "margin", "dex", "finance"],
-      "heroImageUrl": `${URL}/og.png`,
+      "heroImageUrl": "https://eswap.pro/og.png",
       "tagline": "Trade with leverage on a decentralized exchange.",
       "ogTitle": "Eswap Margin",
       "ogDescription": "Decentralized margin trading built on top of deep liquidity.",
-      "ogImageUrl": `${URL}/og.png`,
+      "ogImageUrl": "https://eswap.pro/og.png",
       "noindex": true
     }
   });
