@@ -6,8 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
     "header": "eyJmaWQiOjE4NDk4MzIsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhGNzRkOTIyNDZCMDFkQTRDMWFEYTEzRTU0MEE4RTFhNzk2ODRBNWFlIn0",
     "payload": "eyJkb21haW4iOiJld2FwLW1hcmdpbi52ZXJjZWwuYXBwIn0",
     "signature": "VXMxJOwWeZzhrcEB+Tsld/QP4odivsK+b1lP0Z5K7V5jiliJxOrFhIBDbPITM8wWrikdwluNzSnUKo0NMVI1Xxw="
-  }
-},
+  },
        "miniapp": {
          "version": "1",
          "name": "Eswap Margin",
