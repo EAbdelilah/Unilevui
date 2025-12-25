@@ -172,6 +172,10 @@ function OpenPostionForm() {
 			</nav>
 			{selectedValue === "long" || selectedValue === "short" ? (
 				<div className="flex flex-col gap-2">
+					<div className="bg-yellow-200/30 border border-yellow-500 text-yellow-200 px-4 py-3 rounded-xl text-center">
+						<p className="font-bold">Coming Soon!</p>
+						<p className="text-sm">The Long and Short features are not yet available. Please use the Swap for now.</p>
+					</div>
 					<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-6 p-4">
 						<div className="flex flex-col gap-1">
 							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
