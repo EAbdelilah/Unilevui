@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const imageUrl = `https://ewap-margin.vercel.app/next.svg`;
+  const imageUrl = `https://ewap-margin.vercel.app/icons/eswap-logo.png`;
   return {
     title: 'Eswap Margin',
     description: 'The Next Generation of Decentralized Trading.',
