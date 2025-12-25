@@ -14,7 +14,7 @@ import { NextRequest, NextResponse } from 'next/server';
          "iconUrl": "https://ewap-margin.vercel.app/icons/eswap-logo.png",
          "splashImageUrl": "https://ewap-margin.vercel.app/icons/eswap-logo.png",
          "splashBackgroundColor": "#000000",
-         "subtitle": "Decentralized Trading Platform",
+         "subtitle": "Decentralized Trading",
          "description": "The Next Generation of Decentralized Trading, Built on Top of Deep Liquidity.",
          "screenshotUrls": [],
          "primaryCategory": "finance",
