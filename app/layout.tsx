@@ -10,6 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Eswap Margin',
     description: 'The Next Generation of Decentralized Trading.',
     other: {
+      'fc:miniapp': 'https://ewap-margin.vercel.app/', // This line is required
       'fc:miniapp:name': 'Eswap Margin',
       'fc:miniapp:image': imageUrl,
       'fc:miniapp:image:aspect_ratio': '1.91:1',
