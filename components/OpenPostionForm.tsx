@@ -41,7 +41,7 @@ function OpenPostionForm() {
 	const [nameTokenSend, setNameTokenSend] = useState("");
 	const [nameTokenTrade, setNameTokenTrade] = useState("");
 
-	const [selectedValue, setSelectedValue] = useState("long");
+	const [selectedValue, setSelectedValue] = useState("swap");
 
 	const { config: approveConf } = usePrepareContractWrite({
 		address: addSend as addressT,
@@ -157,142 +157,35 @@ function OpenPostionForm() {
 							value="long"
 							checked={selectedValue === "long"}
 							onChange={handleChange}
+							disabled
 						/>
 						<label htmlFor="long">Long</label>
 					</li>
 					<li>
-						<input type="radio" id="short" name="position" value="short" onChange={handleChange} />
+						<input type="radio" id="short" name="position" value="short" onChange={handleChange} disabled />
 						<label htmlFor="short">Short</label>
 					</li>
 					<li>
-						<input type="radio" id="swap" name="position" value="swap" onChange={handleChange} />
+						<input
+							type="radio"
+							id="swap"
+							name="position"
+							value="swap"
+							onChange={handleChange}
+							checked={selectedValue === "swap"}
+						/>
 						<label htmlFor="swap">Swap</label>
 					</li>
 				</ul>
 			</nav>
-			{selectedValue === "long" || selectedValue === "short" ? (
-				<div className="flex flex-col gap-2">
-					<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-6 p-4">
-						<div className="flex flex-col gap-1">
-							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Base token ({nameTokenSend ? nameTokenSend : "-"})
-							</label>
-							<select
-								id="token-to-send"
-								className="w-full glass-input glass-input-small"
-								style={{ lineHeight: "1.5rem" }}
-								onChange={(e) => setAddSend(e.target.value)}
-							>
-								<option value="">Select a token</option>
-								{networkConfig[activeChainId].pools.map((pool) => (
-									<option key={pool.name} value={pool.token}>
-										{pool.name}
-									</option>
-								))}
-							</select>
-						</div>
-						<div className="flex flex-col gap-1">
-							<label className="text-sm text-neutral-300" htmlFor="token-to-trade">
-								Quote token ({nameTokenTrade ? nameTokenTrade : "-"})
-							</label>
-							<select
-								id="token-to-trade"
-								className="w-full glass-input glass-input-small"
-								style={{ lineHeight: "1.5rem" }}
-								onChange={(e) => setAddTokenToTrade(e.target.value)}
-							>
-								<option value="">Select a token</option>
-								{networkConfig[activeChainId].pools.map((pool) => (
-									<option key={pool.name} value={pool.token}>
-										{pool.name}
-									</option>
-								))}
-							</select>
-						</div>
-					</article>
-					<article className="glass-container flex flex-col gap-4 rounded-3xl md:p-6 p-4">
-						<div className="grid grid-cols-[0.5fr,1fr] items-center gap-2">
-							<label className="text-md font-bold text-neutral-300" htmlFor="token-to-send">
-								Amount in {nameTokenSend ? nameTokenSend : "-"}
-							</label>
-							<input
-								id="amount-to-trade"
-								type="number"
-								min={0}
-								className="w-full glass-input glass-input-large"
-								inputMode="numeric"
-								onChange={(e) => setAmount(e.target.valueAsNumber * 10 ** decTokenSend)}
-							/>
-						</div>
-						<div className="grid grid-cols-[0.5fr,1fr] items-center gap-2">
-							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Limit price in {nameTokenTrade ? nameTokenTrade : "-"}
-							</label>
-							<input
-								id="limite-price"
-								type="number"
-								min={0}
-								className="w-full glass-input glass-input-small"
-								inputMode="numeric"
-								onChange={(e) => setLimitPrice(e.target.valueAsNumber * 10 ** decTokenTrade)}
-							/>
-						</div>
-						<div className="grid grid-cols-[0.5fr,1fr] items-center gap-2">
-							<label className="text-sm text-neutral-300" htmlFor="token-to-send">
-								Stop loss in {nameTokenTrade ? Number(nameTokenTrade) : "-"}
-							</label>
-							<input
-								id="stop-loss"
-								type="number"
-								min={0}
-								className="w-full glass-input glass-input-small"
-								inputMode="numeric"
-								onChange={(e) => setStopPrice(e.target.valueAsNumber * 10 ** decTokenTrade)}
-							/>
-						</div>
-						<div className="grid grid-cols-[0.25fr,1fr] items-center gap-4">
-							<label className="flex flex-row gap-1 text-sm text-neutral-300" htmlFor="token-to-send">
-								<span>Leverage:</span>
-								<span className="font-bold text-neutral-300" style={{ fontStretch: "expanded" }}>
-									{leverage}
-								</span>
-							</label>
-							<input
-								id="leverage"
-								type="range"
-								step={1}
-								min={1}
-								max={5}
-								className="w-full"
-								value={leverage}
-								onChange={handleSliderChange}
-							/>
-						</div>
-					</article>
-					<article className="glass-container text-neutral-300 flex flex-row justify-center gap-4 rounded-3xl md:p-6 p-4">
-						<Button
-							type="button"
-							size="xs"
-							style="solid"
-							onClick={() => {
-								approve?.();
-							}}
-						>
-							Approve
-						</Button>
-						<Button
-							type="button"
-							size="xs"
-							style="ghost"
-							onClick={() => {
-								openPosition?.();
-							}}
-						>
-							Open position
-						</Button>
-					</article>
-				</div>
-			) : (
+			<div className="flex flex-col gap-2">
+				<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-6 p-4">
+					<p className="text-center text-neutral-300">
+						Long and Short positions are not yet available. Please use the Swap feature for now.
+					</p>
+				</article>
+			</div>
+			{selectedValue === "swap" && (
 				<article className="glass-container flex flex-col gap-6 rounded-3xl md:p-8 p-4">
 					<div className="flex justify-center">
 						<Button type="a" style="ghost" size="md" to="https://eswap.dexkit.app/">
