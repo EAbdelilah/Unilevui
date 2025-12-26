@@ -6,13 +6,35 @@ import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
   const imageUrl = `https://ewap-margin.vercel.app/icons/eswap-logo.png`;
+  const miniAppData = {
+    version: "1",
+    imageUrl: imageUrl,
+    button: {
+      title: "Open Eswap Margin",
+      action: {
+        type: "launch_frame",
+        name: "Eswap Margin",
+        url: "https://ewap-margin.vercel.app",
+        splashImageUrl: imageUrl,
+        splashBackgroundColor: "#000000",
+      },
+    },
+  };
+
   return {
     title: 'Eswap Margin',
     description: 'The Next Generation of Decentralized Trading.',
+    openGraph: {
+      title: 'Eswap Margin',
+      description: 'The Next Generation of Decentralized Trading.',
+      images: [
+        {
+          url: imageUrl,
+        },
+      ],
+    },
     other: {
-      'fc:miniapp:name': 'Eswap Margin',
-      'fc:miniapp:image': imageUrl,
-      'fc:miniapp:image:aspect_ratio': '1.91:1',
+      'fc:miniapp': JSON.stringify(miniAppData),
     },
   };
 }
