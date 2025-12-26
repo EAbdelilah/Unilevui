@@ -9,8 +9,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Eswap Margin',
     description: 'The Next Generation of Decentralized Trading.',
+    openGraph: {
+      title: 'Eswap Margin',
+      description: 'The Next Generation of Decentralized Trading.',
+      images: [
+        {
+          url: imageUrl,
+        },
+      ],
+    },
     other: {
-      'fc:miniapp': 'https://ewap-margin.vercel.app/', // This line is required
+      'fc:miniapp': 'https://ewap-margin.vercel.app/',
       'fc:miniapp:name': 'Eswap Margin',
       'fc:miniapp:image': imageUrl,
       'fc:miniapp:image:aspect_ratio': '1.91:1',
