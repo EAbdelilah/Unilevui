@@ -40,6 +40,15 @@ export default function Footer() {
 						<Button type="button" size="lg" style="ghost">Connect Wallet</Button>
 					</div>
 				</div>
+				<div className="flex flex-col justify-center items-center mt-8">
+						<a href="https://itunes.apple.com/app/coinbase-wallet/id1278383455?ls=1&mt=8" target="_blank" rel="noopener noreferrer">
+								<img src="/getCoinbaseWallet.png" alt="Get Coinbase Wallet" style={{ width: '200px', height: 'auto' }} />
+						</a>
+						<div className="flex space-x-4 mt-4">
+								<a href="https://itunes.apple.com/app/coinbase-wallet/id1278383455?ls=1&mt=8" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Apple App Store</a>
+								<a href="https://play.google.com/store/apps/details?id=org.toshi" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Google Play Store</a>
+						</div>
+				</div>
 				<div className="flex flex-col justify-center gap-2 items-center text-neutral-400 text-xs">
 					<p>
 						<a href="https://chain.link/hackathon" target="_blank" className="hover:text-neutral-500 transition-all">
