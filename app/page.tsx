@@ -100,15 +100,6 @@ export default function Home() {
 				<section className="flex justify-center items-center h-full">
 					<TextReveal />
 				</section>
-				<section className="flex flex-col justify-center items-center h-full">
-						<a href="https://itunes.apple.com/app/coinbase-wallet/id1278383455?ls=1&mt=8" target="_blank" rel="noopener noreferrer">
-								<img src="/getCoinbaseWallet.png" alt="Get Coinbase Wallet" style={{ width: '200px', height: 'auto' }} />
-						</a>
-						<div className="flex space-x-4 mt-4">
-								<a href="https://itunes.apple.com/app/coinbase-wallet/id1278383455?ls=1&mt=8" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Apple App Store</a>
-								<a href="https://play.google.com/store/apps/details?id=org.toshi" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Google Play Store</a>
-						</div>
-				</section>
 				{/* SECOND PAGE */}
 				<section className="fit-content flex justify-center h-full" id="introduction">
 					<div className="introduction-container flex flex-col md:mt-32 mt-24">
